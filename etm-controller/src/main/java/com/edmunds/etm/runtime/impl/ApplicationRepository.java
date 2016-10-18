@@ -38,6 +38,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * Repository for ETM-managed applications.
@@ -212,7 +213,7 @@ public class ApplicationRepository {
         VirtualServer vs = null;
         if (vip.getHostAddress() != null) {
             Collection<ManagementPoolMember> vipMembers = vip.getPoolMembers().values();
-            Set<PoolMember> members = Sets.newHashSetWithExpectedSize(vipMembers.size());
+            SortedSet<PoolMember> members = Sets.newTreeSet();
             for (ManagementPoolMember mpm : vipMembers) {
                 members.add(new PoolMember(mpm.getHostAddress()));
             }

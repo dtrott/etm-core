@@ -32,10 +32,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.rmi.RemoteException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
 
 /**
  * Identity Load Balancer.
@@ -97,7 +97,7 @@ public class IdentityLoadBalancer implements LoadBalancerConnection {
 
         final String name = server.getName();
         final HostAddress hostAddress = new HostAddress("localhost", virtualServerConfig.getPort());
-        final HashSet<PoolMember> poolMembers = Sets.newHashSet(server.getPoolMembers());
+        final SortedSet<PoolMember> poolMembers = Sets.newTreeSet(server.getPoolMembers());
         final VirtualServer serverCopy = new VirtualServer(name, hostAddress, poolMembers);
 
         virtualServers.put(name, serverCopy);

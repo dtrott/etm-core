@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -77,8 +78,8 @@ public class HaProxyConfigurationBuilderTest {
         return applications;
     }
 
-    private Set<PoolMember> buildPoolMembers(final int appCount) {
-        final Set<PoolMember> poolMembers = Sets.newHashSet();
+    private SortedSet<PoolMember> buildPoolMembers(final int appCount) {
+        final SortedSet<PoolMember> poolMembers = Sets.newTreeSet();
 
         for (int i = 1; i < 4; i++) {
             final String host = String.format("10.2.%d.%d", appCount, i);

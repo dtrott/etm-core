@@ -43,6 +43,7 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
 
 import static com.edmunds.etm.management.api.ManagementLoadBalancerState.ACTIVE;
 import static com.edmunds.etm.management.api.ManagementVipType.COMPLETE;
@@ -213,7 +214,7 @@ public class LoadBalancerController {
 
     private ManagementVip createVirtualServer(ManagementVip vip) {
         final String serverName = createServerName(vip.getMavenModule());
-        final Set<PoolMember> poolMembers = vipToPoolMembers(vip);
+        final SortedSet<PoolMember> poolMembers = vipToPoolMembers(vip);
         final HttpMonitor httpMonitor = vip.getHttpMonitor();
         logger.info(String.format("Creating virtual server: %s", serverName));
 
@@ -253,7 +254,7 @@ public class LoadBalancerController {
     }
 
     private VirtualServer createVirtualServerInternal(
-            String serverName, Set<PoolMember> poolMembers, HttpMonitor httpMonitor) {
+            String serverName, SortedSet<PoolMember> poolMembers, HttpMonitor httpMonitor) {
         try {
             // Create new virtual server (Note: HostAddress is null)
             final VirtualServer vsTemplate = new VirtualServer(serverName, null, poolMembers);
@@ -371,9 +372,9 @@ public class LoadBalancerController {
         return map;
     }
 
-    private Set<PoolMember> vipToPoolMembers(ManagementVip vip) {
+    private SortedSet<PoolMember> vipToPoolMembers(ManagementVip vip) {
         Collection<ManagementPoolMember> managementPoolMembers = vip.getPoolMembers().values();
-        Set<PoolMember> poolMembers = Sets.newHashSetWithExpectedSize(managementPoolMembers.size());
+        SortedSet<PoolMember> poolMembers = Sets.newTreeSet();
         for (ManagementPoolMember mpm : managementPoolMembers) {
             poolMembers.add(new PoolMember(mpm.getHostAddress()));
         }

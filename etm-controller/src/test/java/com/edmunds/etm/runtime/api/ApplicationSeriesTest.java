@@ -62,17 +62,17 @@ public class ApplicationSeriesTest {
         List<String> rules_b = Lists.newArrayList("/app_b/*");
         HttpMonitor monitor = new HttpMonitor("/status.html", "OK");
         VirtualServer server_a1 = new VirtualServer("vs_a1",
-            new HostAddress("2.1.1.1", 8080),
-            Sets.newHashSet(m1, m2));
+                new HostAddress("2.1.1.1", 8080),
+                Sets.newTreeSet(Sets.newHashSet(m1, m2)));
         VirtualServer server_a2 = new VirtualServer("vs_a2",
-            new HostAddress("2.1.1.2", 8080),
-            Sets.newHashSet(m3, m4));
+                new HostAddress("2.1.1.2", 8080),
+                Sets.newTreeSet(Lists.newArrayList(m3, m4)));
         VirtualServer server_a3 = new VirtualServer("vs_a3",
-            new HostAddress("2.1.1.3", 8080),
-            Sets.newHashSet(m5, m6, m7));
+                new HostAddress("2.1.1.3", 8080),
+                Sets.newTreeSet(Lists.newArrayList(m5, m6, m7)));
         VirtualServer server_b = new VirtualServer("vs_b",
-            new HostAddress("2.1.1.4", 8080),
-            Sets.newHashSet(m8));
+                new HostAddress("2.1.1.4", 8080),
+                Sets.newTreeSet(Lists.newArrayList(m8)));
 
         // App A, 2 pool members, v. 1.0.0
         app1 = new Application(module_a1, rules_a, monitor, server_a1);
