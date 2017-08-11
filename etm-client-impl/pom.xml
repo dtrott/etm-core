@@ -17,12 +17,12 @@
         <!-- Edmunds Dependencies -->
         <dependency>
             <groupId>com.edmunds.oss.etm</groupId>
-            <artifactId>etm-common</artifactId>
+            <artifactId>etm-config</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.edmunds.oss.common</groupId>
-            <artifactId>edmunds-configuration</artifactId>
+            <groupId>com.edmunds.oss.etm</groupId>
+            <artifactId>etm-common</artifactId>
         </dependency>
 
         <dependency>
