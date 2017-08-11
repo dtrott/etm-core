@@ -22,8 +22,8 @@ import com.edmunds.etm.common.thrift.ServiceConfigDto;
 import com.edmunds.etm.common.thrift.ServiceProviderDto;
 import com.edmunds.etm.common.thrift.ServiceType;
 import com.edmunds.etm.common.thrift.VipConfigDto;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;

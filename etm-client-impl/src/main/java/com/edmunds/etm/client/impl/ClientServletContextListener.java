@@ -21,9 +21,10 @@ import com.edmunds.etm.common.thrift.MavenModuleDto;
 import com.edmunds.etm.common.xml.XmlMarshaller;
 import com.edmunds.etm.common.xml.XmlValidationException;
 import com.edmunds.etm.common.xml.XmlValidator;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import com.google.common.io.ByteStreams;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 
 import javax.servlet.ServletContext;
@@ -46,7 +47,7 @@ import java.util.Properties;
  */
 public class ClientServletContextListener implements ServletContextListener {
 
-    private static final Logger logger = Logger.getLogger(ClientServletContextListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(ClientServletContextListener.class);
 
     private final static String CLIENT_CONTEXT_PATH = "/etm-client-context.xml";
 
@@ -129,7 +130,7 @@ public class ClientServletContextListener implements ServletContextListener {
     private ClientConfigDto readClientConfiguration() {
         byte[] xmlData;
         try {
-            xmlData = IOUtils.toByteArray(getClass().getResourceAsStream(ETM_CONFIG_PATH));
+            xmlData = ByteStreams.toByteArray(getClass().getResourceAsStream(ETM_CONFIG_PATH));
         } catch (IOException e) {
             String message = String.format("Could not read ETM configuration file at %s", ETM_CONFIG_PATH);
             logger.error(message);

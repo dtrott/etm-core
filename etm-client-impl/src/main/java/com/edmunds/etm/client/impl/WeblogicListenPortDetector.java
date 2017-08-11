@@ -15,7 +15,8 @@
  */
 package com.edmunds.etm.client.impl;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.management.JMException;
 import javax.management.MBeanServer;
@@ -58,7 +59,7 @@ public final class WeblogicListenPortDetector implements ListenPortDetector {
     /**
      * Log4J Logger for this class.
      */
-    private static final Logger log = Logger.getLogger(WeblogicListenPortDetector.class);
+    private static final Logger log = LoggerFactory.getLogger(WeblogicListenPortDetector.class);
 
     @Override
     public int getListenPort() {

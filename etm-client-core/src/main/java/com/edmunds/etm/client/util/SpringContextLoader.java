@@ -1,6 +1,7 @@
 package com.edmunds.etm.client.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -12,7 +13,7 @@ import java.util.Properties;
  */
 public final class SpringContextLoader {
 
-    private static final Logger logger = Logger.getLogger(SpringContextLoader.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpringContextLoader.class);
 
     private SpringContextLoader() {
     }

@@ -16,7 +16,8 @@
 package com.edmunds.etm.client.impl;
 
 import com.edmunds.etm.client.util.SpringContextLoader;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -30,7 +31,7 @@ import java.util.Properties;
 public class Daemon {
 
     private static final String DAEMON_CONTEXT_PATH = "/etm-daemon-context.xml";
-    private static final Logger logger = Logger.getLogger(Daemon.class);
+    private static final Logger logger = LoggerFactory.getLogger(Daemon.class);
 
     public static void main(String[] args) {
 
