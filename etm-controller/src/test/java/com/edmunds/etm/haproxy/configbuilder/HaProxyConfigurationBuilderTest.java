@@ -125,9 +125,7 @@ public class HaProxyConfigurationBuilderTest {
     private Set<MavenModule> getMavenModules(List<UrlRule> urlRules) {
         final Set<MavenModule> modules = Sets.newTreeSet();
 
-        for (final UrlRule urlRule : urlRules) {
-            modules.add(urlRule.getMavenModule());
-        }
+        urlRules.forEach(urlRule -> modules.add(urlRule.getMavenModule()));
 
         return modules;
     }
