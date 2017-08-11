@@ -124,16 +124,6 @@
 
     <profiles>
         <profile>
-            <id>edmunds</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.edmunds.etm.plugin</groupId>
-                    <artifactId>etm-bigip-loadbalancer</artifactId>
-                    <version>[1.0.0,1.1.0)</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>public</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
