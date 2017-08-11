@@ -13,12 +13,7 @@
     <context:component-scan base-package="com.edmunds.etm.client.impl"/>
 
     <bean id="etmClientSettings" class="com.edmunds.etm.client.impl.ClientSettings">
-        <property name="enabled">
-            <bean class="com.edmunds.common.configuration.api.EnvironmentPropertyFactory">
-                <property name="local" value="false"/>
-                <property name="managed" value="true"/>
-            </bean>
-        </property>
+        <property name="enabled" value="#{ clientPaths.enabled }"/>
     </bean>
 
     <!-- Note: The ${maven.artifactId} variable is set in ClientServletContextListener.getConfigurer() -->
