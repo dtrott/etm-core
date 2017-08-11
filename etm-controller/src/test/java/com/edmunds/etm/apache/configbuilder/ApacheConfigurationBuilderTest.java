@@ -7,11 +7,13 @@ import com.edmunds.etm.rules.api.UrlRule;
 import com.edmunds.etm.rules.api.UrlTokenResolver;
 import com.edmunds.etm.rules.impl.UrlTokenDictionary;
 import com.google.common.collect.Lists;
+import com.google.common.io.CharStreams;
 import org.apache.commons.io.IOUtils;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -72,7 +74,7 @@ public class ApacheConfigurationBuilderTest {
         try {
             stream = getClass().getResourceAsStream("/url-rules.txt");
 
-            return IOUtils.readLines(stream, "UTF8");
+            return CharStreams.readLines(new InputStreamReader(stream, "UTF8"));
         } finally {
             if (stream != null) {
                 stream.close();

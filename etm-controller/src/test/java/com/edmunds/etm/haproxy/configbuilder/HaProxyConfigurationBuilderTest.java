@@ -13,11 +13,13 @@ import com.edmunds.etm.rules.impl.UrlTokenDictionary;
 import com.edmunds.etm.runtime.api.Application;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.google.common.io.CharStreams;
 import org.apache.commons.io.IOUtils;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -73,7 +75,7 @@ public class HaProxyConfigurationBuilderTest {
         int appCount = 1;
         for (MavenModule mavenModule : mavenModules) {
             final VirtualServer virtualServer = new VirtualServer(mavenModule.getArtifactId(), vipHost, buildPoolMembers(appCount++));
-            applications.add(new Application(mavenModule, new ArrayList<String>(), httpMonitor, virtualServer));
+            applications.add(new Application(mavenModule, new ArrayList<>(), httpMonitor, virtualServer));
         }
         return applications;
     }
@@ -94,7 +96,7 @@ public class HaProxyConfigurationBuilderTest {
         try {
             stream = getClass().getResourceAsStream("/url-rules.txt");
 
-            return IOUtils.readLines(stream, "UTF8");
+            return CharStreams.readLines(new InputStreamReader(stream, "UTF8"));
         } finally {
             if (stream != null) {
                 stream.close();

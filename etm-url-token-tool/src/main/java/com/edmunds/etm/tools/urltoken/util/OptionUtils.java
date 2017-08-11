@@ -19,12 +19,12 @@ import com.edmunds.etm.common.api.UrlTokenType;
 import com.google.common.collect.Lists;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 /**
@@ -78,7 +78,7 @@ public final class OptionUtils {
         List<String> values;
         File file = options.valueOf(fileSpec);
         if (file != null) {
-            values = Lists.newArrayList(FileUtils.readLines(file));
+            values = Files.readAllLines(file.toPath());
         } else {
             values = Lists.newArrayList();
         }
