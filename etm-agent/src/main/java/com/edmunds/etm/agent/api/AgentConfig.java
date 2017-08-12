@@ -16,7 +16,7 @@
 package com.edmunds.etm.agent.api;
 
 import com.edmunds.etm.common.api.ControllerPaths;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Configuration properties for the agent process. <p/>

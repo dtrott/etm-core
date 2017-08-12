@@ -17,9 +17,9 @@ package com.edmunds.etm.agent.impl;
 
 import com.edmunds.etm.agent.api.HealthCheck;
 import com.edmunds.etm.agent.api.HealthCheckListener;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -152,8 +152,8 @@ public class TcpHealthCheck implements HealthCheck {
 
             if (logger.isDebugEnabled()) {
                 String message = String.format("Time statistics updated with lastCheckTime %d and elapsedTime %d",
-                    lastCheckTime,
-                    elapsedTime);
+                        lastCheckTime,
+                        elapsedTime);
                 logger.debug(message);
             }
 
