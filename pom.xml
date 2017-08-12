@@ -19,7 +19,7 @@
 
         <rest-common-version>[1.10.0,1.11.0)</rest-common-version>
         <spring.version>2.5.6</spring.version>
-        <jetty.version>7.1.6.v20100715</jetty.version>
+        <jetty.version>9.4.6.v20170531</jetty.version>
         <jetty.connectorPort>8080</jetty.connectorPort>
         <jetty.stopPort>5709</jetty.stopPort>
     </properties>
@@ -40,23 +40,21 @@
                         </webResources>
                     </configuration>
                 </plugin>
+
                 <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
+                    <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>${jetty.version}</version>
+                    <version>9.4.6.v20170531</version>
                     <configuration>
                         <stopKey>STOP</stopKey>
                         <stopPort>${jetty.stopPort}</stopPort>
                         <useTestClasspath>true</useTestClasspath>
-                        <scanIntervalSeconds>5</scanIntervalSeconds>
                         <webAppConfig>
                             <contextPath>/</contextPath>
                         </webAppConfig>
-                        <connectors>
-                            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                                <port>${jetty.connectorPort}</port>
-                            </connector>
-                        </connectors>
+                        <httpConnector>
+                            <port>${jetty.connectorPort}</port>
+                        </httpConnector>
                     </configuration>
                 </plugin>
             </plugins>
