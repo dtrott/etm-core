@@ -19,7 +19,7 @@ import com.edmunds.etm.common.api.UrlTokenType;
 import com.google.common.collect.Lists;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
