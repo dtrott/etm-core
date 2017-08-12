@@ -18,7 +18,8 @@ package com.edmunds.etm.agent.impl;
 import com.edmunds.etm.common.api.AgentPaths;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.edmunds.zookeeper.connection.ZooKeeperNodeInitializer;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Agent implements Runnable, InitializingBean, DisposableBean {
-    private static final Logger logger = Logger.getLogger(Agent.class);
+    private static final Logger logger = LoggerFactory.getLogger(Agent.class);
 
     private final ZooKeeperConnection connection;
     private final RuleSetMonitor ruleSetMonitor;

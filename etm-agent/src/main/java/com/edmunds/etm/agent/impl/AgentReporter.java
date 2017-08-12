@@ -27,16 +27,18 @@ import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.edmunds.zookeeper.connection.ZooKeeperConnectionListener;
 import com.edmunds.zookeeper.connection.ZooKeeperConnectionState;
 import com.edmunds.zookeeper.util.ZooKeeperUtils;
+import org.apache.zookeeper.AsyncCallback;
+import org.apache.zookeeper.KeeperException.Code;
+import org.apache.zookeeper.data.Stat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
-import org.apache.log4j.Logger;
-import org.apache.zookeeper.AsyncCallback;
-import org.apache.zookeeper.KeeperException.Code;
-import org.apache.zookeeper.data.Stat;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * Reports agent status and events to ZooKeeper for central monitoring.
@@ -46,7 +48,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AgentReporter implements ZooKeeperConnectionListener {
 
-    private static final Logger logger = Logger.getLogger(AgentReporter.class);
+    private static final Logger logger = LoggerFactory.getLogger(AgentReporter.class);
 
     private final ZooKeeperConnection connection;
     private final AgentPaths agentPaths;
@@ -73,12 +75,12 @@ public class AgentReporter implements ZooKeeperConnectionListener {
     /**
      * Publishes a new rule set deployment event.
      *
-     * @param event rule set deployment event
+     * @param event               rule set deployment event
      * @param activeRuleSetDigest digest of the active rule set
      */
     public void publishDeploymentEvent(RuleSetDeploymentEvent event, String activeRuleSetDigest) {
         agentInstance.setLastDeploymentEvent(event);
-        if(event.getResult() != RuleSetDeploymentResult.OK) {
+        if (event.getResult() != RuleSetDeploymentResult.OK) {
             agentInstance.setLastFailedDeploymentEvent(event);
         }
         agentInstance.setActiveRuleSetDigest(activeRuleSetDigest);
@@ -93,7 +95,7 @@ public class AgentReporter implements ZooKeeperConnectionListener {
      * @return agent instance object
      */
     public AgentInstance getAgentInstance() {
-        if(agentInstance == null) {
+        if (agentInstance == null) {
             agentInstance = createAgentInstance();
         }
         return agentInstance;
@@ -101,9 +103,9 @@ public class AgentReporter implements ZooKeeperConnectionListener {
 
     @Override
     public void onConnectionStateChanged(ZooKeeperConnectionState state) {
-        if(state == ZooKeeperConnectionState.INITIALIZED) {
+        if (state == ZooKeeperConnectionState.INITIALIZED) {
             createAgentNode();
-        } else if(state == ZooKeeperConnectionState.EXPIRED) {
+        } else if (state == ZooKeeperConnectionState.EXPIRED) {
             agentNodePath = null;
         }
     }
@@ -113,7 +115,7 @@ public class AgentReporter implements ZooKeeperConnectionListener {
      */
     protected void createAgentNode() {
 
-        if(agentNodePath != null) {
+        if (agentNodePath != null) {
             return;
         }
 
@@ -133,10 +135,10 @@ public class AgentReporter implements ZooKeeperConnectionListener {
     }
 
     protected void onAgentNodeCreated(Code rc, String path, String name) {
-        if(rc == Code.OK) {
+        if (rc == Code.OK) {
             agentNodePath = name;
             logger.debug(String.format("Created agent host node: %s", name));
-        } else if(ZooKeeperUtils.isRetryableError(rc)) {
+        } else if (ZooKeeperUtils.isRetryableError(rc)) {
             logger.warn(String.format("Error %s while creating agent instance node %s, retrying", rc, path));
             createAgentNode();
         } else {
@@ -146,7 +148,7 @@ public class AgentReporter implements ZooKeeperConnectionListener {
     }
 
     protected void updateAgentNode() {
-        if(agentNodePath == null) {
+        if (agentNodePath == null) {
             return;
         }
 
@@ -164,9 +166,9 @@ public class AgentReporter implements ZooKeeperConnectionListener {
 
     protected void onSetAgentNodeData(Code rc, String path) {
 
-        if(rc == Code.OK) {
+        if (rc == Code.OK) {
             logger.debug("Agent instance node updated");
-        } else if(ZooKeeperUtils.isRetryableError(rc)) {
+        } else if (ZooKeeperUtils.isRetryableError(rc)) {
             logger.warn(String.format("Error %s while updating agent instance node %s, retrying", rc, path));
             updateAgentNode();
         } else {
@@ -192,7 +194,7 @@ public class AgentReporter implements ZooKeeperConnectionListener {
     private static String getIpAddress() {
         try {
             return InetAddress.getLocalHost().getHostAddress();
-        } catch(UnknownHostException e) {
+        } catch (UnknownHostException e) {
             String message = "Could not get IP address for localhost";
             logger.error(message, e);
             throw new RuntimeException(e);
@@ -204,7 +206,7 @@ public class AgentReporter implements ZooKeeperConnectionListener {
         byte[] data = new byte[0];
         try {
             data = objectSerializer.writeValue(dto);
-        } catch(IOException e) {
+        } catch (IOException e) {
             logger.error(String.format("Failed to serialize controller instance dto: %s", dto), e);
         }
 

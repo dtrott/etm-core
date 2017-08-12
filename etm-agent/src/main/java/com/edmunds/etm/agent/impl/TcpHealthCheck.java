@@ -20,6 +20,7 @@ import com.edmunds.etm.agent.api.HealthCheckListener;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -38,7 +39,7 @@ import java.util.TimerTask;
  * @author Ryan Holmes
  */
 public class TcpHealthCheck implements HealthCheck {
-    private static final Logger logger = Logger.getLogger(TcpHealthCheck.class);
+    private static final Logger logger = LoggerFactory.getLogger(TcpHealthCheck.class);
 
     private final String hostName;
     private final int port;

@@ -22,12 +22,13 @@ import com.edmunds.etm.common.api.ControllerPaths;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.edmunds.zookeeper.connection.ZooKeeperConnectionListener;
 import com.edmunds.zookeeper.connection.ZooKeeperConnectionState;
-import org.apache.log4j.Logger;
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.KeeperException.Code;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.data.Stat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -41,7 +42,7 @@ import java.util.concurrent.Executor;
 @Component
 public class RuleSetMonitor implements ZooKeeperConnectionListener, Watcher {
 
-    private static final Logger logger = Logger.getLogger(RuleSetMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(RuleSetMonitor.class);
 
     private final ZooKeeperConnection connection;
     private final WebServerController serverController;

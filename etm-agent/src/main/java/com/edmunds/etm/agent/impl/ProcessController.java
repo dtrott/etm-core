@@ -19,7 +19,8 @@ import com.edmunds.etm.agent.api.AgentConfig;
 import com.edmunds.etm.agent.api.HealthCheck;
 import com.edmunds.etm.agent.api.WebServerController;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,7 @@ import java.io.IOException;
 @Component
 public class ProcessController implements WebServerController {
 
-    private static final Logger logger = Logger.getLogger(ProcessController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProcessController.class);
 
     // Process exit value indicating success
     private static final int PROCESS_SUCCESS_EXIT_VALUE = 0;

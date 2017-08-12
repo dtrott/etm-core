@@ -24,7 +24,8 @@ import com.edmunds.etm.common.api.RuleSetDeploymentResult;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.edmunds.zookeeper.election.ZooKeeperElection;
 import com.edmunds.zookeeper.election.ZooKeeperElectionListener;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -36,7 +37,7 @@ import java.util.Date;
  */
 public class RuleSetDeploymentTask implements Runnable, ZooKeeperElectionListener {
 
-    private static final Logger logger = Logger.getLogger(RuleSetDeploymentTask.class);
+    private static final Logger logger = LoggerFactory.getLogger(RuleSetDeploymentTask.class);
 
     private final byte[] newRuleSetData;
     private final WebServerController serverController;
