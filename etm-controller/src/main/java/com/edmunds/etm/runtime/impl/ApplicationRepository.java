@@ -30,7 +30,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -50,7 +51,7 @@ import java.util.SortedSet;
 @Component
 public class ApplicationRepository {
 
-    private static final Logger logger = Logger.getLogger(ApplicationRepository.class);
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationRepository.class);
 
     private EnvironmentConfiguration environment;
 

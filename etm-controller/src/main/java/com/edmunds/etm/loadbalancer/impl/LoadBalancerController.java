@@ -35,7 +35,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang.Validate;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -59,7 +60,7 @@ public class LoadBalancerController {
 
     public static final String VIRTUAL_SERVER_NAME_PREFIX = "etm";
 
-    private static final Logger logger = Logger.getLogger(LoadBalancerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoadBalancerController.class);
 
     private final LoadBalancerConnection connection;
     private final LoadBalancerConfig loadBalancerConfig;

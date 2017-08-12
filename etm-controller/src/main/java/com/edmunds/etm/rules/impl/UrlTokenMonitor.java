@@ -29,7 +29,8 @@ import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeNode;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeWatcher;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
@@ -51,7 +52,7 @@ public class UrlTokenMonitor implements ZooKeeperConnectionListener, ServletCont
 
     public static final String DEFAULT_TOKENS_XML_PATH = "/WEB-INF/default-url-tokens.xml";
 
-    private static final Logger logger = Logger.getLogger(UrlTokenMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(UrlTokenMonitor.class);
 
     private final ZooKeeperTreeWatcher tokenNodeWatcher;
     private final ObjectSerializer objectSerializer;

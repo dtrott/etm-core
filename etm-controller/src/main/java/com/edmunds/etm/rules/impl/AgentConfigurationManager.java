@@ -27,10 +27,11 @@ import com.google.common.collect.Sets;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.data.Stat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,7 +52,7 @@ import java.util.Set;
  */
 @Component
 public class AgentConfigurationManager {
-    private static final Logger logger = Logger.getLogger(AgentConfigurationManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(AgentConfigurationManager.class);
 
     private Map<String, WebServerConfigurationBuilder> webServerConfigurationBuilders;
     private ControllerPaths controllerPaths;
@@ -173,7 +174,7 @@ public class AgentConfigurationManager {
         try {
             logger.debug(String.format("New Apache configuration generated: %n%s", new String(ruleSet, "UTF8")));
         } catch (UnsupportedEncodingException e) {
-            logger.fatal(e);          // Won't ever happen.
+            logger.error("Unsupported Encoding.", e);          // Won't ever happen.
         }
     }
 

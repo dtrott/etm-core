@@ -22,7 +22,8 @@ import com.edmunds.etm.runtime.api.Application;
 import com.edmunds.etm.runtime.impl.ApplicationRepository;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,7 +41,7 @@ import java.util.Set;
 @Component
 public class LoadBalancerDataAccessService {
 
-    private static final Logger logger = Logger.getLogger(LoadBalancerDataAccessService.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoadBalancerDataAccessService.class);
 
     private final LoadBalancerConnection loadBalancerConnection;
     private final ApplicationRepository applicationRepository;

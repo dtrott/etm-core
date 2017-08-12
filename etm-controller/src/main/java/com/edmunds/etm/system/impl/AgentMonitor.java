@@ -26,7 +26,8 @@ import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeConsistentCallback;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeNode;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeWatcher;
 import com.google.common.collect.Sets;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,7 +44,7 @@ import java.util.Set;
 public class AgentMonitor implements ZooKeeperConnectionListener {
 
     private static final long DEFAULT_RULE_SET_DEPLOYMENT_TIMEOUT = 5000;
-    private static final Logger logger = Logger.getLogger(AgentMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(AgentMonitor.class);
 
     private final ZooKeeperTreeWatcher agentWatcher;
     private final ObjectSerializer objectSerializer;

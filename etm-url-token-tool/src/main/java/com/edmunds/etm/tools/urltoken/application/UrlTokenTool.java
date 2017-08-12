@@ -22,7 +22,8 @@ import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.edmunds.zookeeper.connection.ZooKeeperConnectionListener;
 import com.edmunds.zookeeper.connection.ZooKeeperConnectionState;
 import com.edmunds.zookeeper.connection.ZooKeeperNodeInitializer;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -38,7 +39,7 @@ import java.util.concurrent.CountDownLatch;
 @Component
 public class UrlTokenTool implements ZooKeeperConnectionListener {
 
-    private static final Logger logger = Logger.getLogger(UrlTokenTool.class);
+    private static final Logger logger = LoggerFactory.getLogger(UrlTokenTool.class);
 
     private final ZooKeeperConnection connection;
     private final CommandLocator commandLocator;

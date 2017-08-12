@@ -18,7 +18,8 @@ package com.edmunds.etm.rules.api;
 import com.edmunds.etm.management.api.MavenModule;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -39,7 +40,7 @@ public class UrlRuleSet {
     /**
      * The logger.
      */
-    private static final Logger logger = Logger.getLogger(UrlRuleSet.class);
+    private static final Logger logger = LoggerFactory.getLogger(UrlRuleSet.class);
 
     /**
      * The set of all rules.

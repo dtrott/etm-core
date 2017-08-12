@@ -19,6 +19,8 @@
 
         <rest-common-version>[1.10.0,1.11.0)</rest-common-version>
         <spring.version>4.3.10.RELEASE</spring.version>
+        <slf4j.version>1.7.25</slf4j.version>
+
         <jetty.version>9.4.6.v20170531</jetty.version>
         <jetty.connectorPort>8080</jetty.connectorPort>
         <jetty.stopPort>5709</jetty.stopPort>
@@ -92,20 +94,6 @@
                 <version>[1.0.0,1.1.0)</version>
             </dependency>
 
-            <!-- Thrift dependencies -->
-
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.5.8</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-jdk14</artifactId>
-                <version>1.5.8</version>
-            </dependency>
-
             <!-- Other Dependencies -->
 
             <dependency>
@@ -145,12 +133,6 @@
             </dependency>
 
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.14</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>19.0</version>
@@ -179,6 +161,28 @@
                 <artifactId>freemarker</artifactId>
                 <version>2.3.19</version>
             </dependency>
+
+
+            <!-- Logging Dependencies -->
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+
 
             <!-- Provided Dependencies -->
             <dependency>

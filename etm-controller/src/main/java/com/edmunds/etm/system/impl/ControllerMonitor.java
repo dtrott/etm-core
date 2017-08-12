@@ -28,10 +28,11 @@ import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeConsistentCallback;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeNode;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeWatcher;
 import com.google.common.collect.Sets;
-import org.apache.log4j.Logger;
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.KeeperException.Code;
 import org.apache.zookeeper.data.Stat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -50,7 +51,7 @@ import java.util.UUID;
 @Component
 public class ControllerMonitor implements ZooKeeperConnectionListener, FailoverListener {
 
-    private static final Logger logger = Logger.getLogger(ControllerMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(ControllerMonitor.class);
 
     private final ZooKeeperConnection connection;
     private final ControllerPaths controllerPaths;

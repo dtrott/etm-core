@@ -25,7 +25,8 @@ import com.edmunds.etm.system.impl.FailoverMonitor;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.edmunds.zookeeper.connection.ZooKeeperNodeInitializer;
 import com.google.common.collect.Lists;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class EtmController implements InitializingBean, DisposableBean {
 
     private static final long ZOOKEEPER_CONNECTION_CLOSE_WAIT = 1000;
 
-    private static final Logger logger = Logger.getLogger(EtmController.class);
+    private static final Logger logger = LoggerFactory.getLogger(EtmController.class);
 
     /**
      * The ZooKeeperConnection.
@@ -116,7 +117,7 @@ public class EtmController implements InitializingBean, DisposableBean {
         if (etmInitialized) {
             final String msg = "ETM Critical Error: Double initialization detected - Shutting down the JVM";
             System.err.println(msg);
-            logger.fatal(msg);
+            logger.error(msg);
             System.exit(1);
             // We have a security manager.
             throw new Error(msg);

@@ -24,7 +24,8 @@ import com.edmunds.zookeeper.connection.ZooKeeperConnectionState;
 import com.edmunds.zookeeper.election.ZooKeeperElection;
 import com.edmunds.zookeeper.election.ZooKeeperElectionListener;
 import com.google.common.collect.Sets;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +40,7 @@ import java.util.Set;
 @Component
 public class FailoverMonitor implements ZooKeeperConnectionListener, ZooKeeperElectionListener {
 
-    private static final Logger logger = Logger.getLogger(FailoverMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(FailoverMonitor.class);
 
     private final ZooKeeperElection masterElection;
     private final Set<FailoverListener> failoverListeners;

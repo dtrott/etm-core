@@ -24,10 +24,11 @@ import com.edmunds.etm.management.api.ManagementVips;
 import com.edmunds.etm.management.util.VipDeltaCalculator;
 import com.edmunds.zookeeper.connection.ZooKeeperConnection;
 import com.google.common.collect.Sets;
-import org.apache.log4j.Logger;
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.data.Stat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,7 +48,7 @@ import static com.edmunds.zookeeper.util.ZooKeeperUtils.isRetryableError;
 @Component
 public class VipManager {
 
-    private static final Logger logger = Logger.getLogger(VipManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(VipManager.class);
 
     private final ZooKeeperConnection connection;
     private final ControllerPaths controllerPaths;

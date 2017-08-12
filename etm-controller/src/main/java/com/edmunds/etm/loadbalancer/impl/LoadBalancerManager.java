@@ -28,7 +28,8 @@ import com.edmunds.etm.system.api.FailoverListener;
 import com.edmunds.etm.system.api.FailoverState;
 import com.edmunds.etm.system.impl.AgentMonitor;
 import com.edmunds.etm.system.impl.FailoverMonitor;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,7 +50,7 @@ import java.util.concurrent.TimeUnit;
 public class LoadBalancerManager
         implements ClientMonitorCallback, FailoverListener, DisposableBean {
 
-    private static final Logger logger = Logger.getLogger(LoadBalancerManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoadBalancerManager.class);
     private static final long EXECUTOR_SHUTDOWN_TIMEOUT = 10000;
 
     private final ClientMonitor clientMonitor;

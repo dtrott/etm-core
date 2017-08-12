@@ -34,7 +34,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
     private static final long SCHEDULER_EXECUTION_PERIOD = 250;
     private static final long SCHEDULER_SHUTDOWN_TIMEOUT = 3000;
 
-    private static final Logger logger = Logger.getLogger(ClientMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(ClientMonitor.class);
 
     private final ZooKeeperTreeWatcher watcher;
     private final Collection<ClientMonitorCallback> clientMonitorCallbacks;

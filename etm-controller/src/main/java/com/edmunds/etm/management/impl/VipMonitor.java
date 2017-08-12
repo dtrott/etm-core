@@ -26,7 +26,8 @@ import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeConsistentCallback;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeNode;
 import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeWatcher;
 import com.google.common.collect.Sets;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +43,7 @@ import static com.edmunds.zookeeper.connection.ZooKeeperConnectionState.INITIALI
 @Component
 public class VipMonitor implements ZooKeeperConnectionListener {
 
-    private static final Logger logger = Logger.getLogger(VipMonitor.class);
+    private static final Logger logger = LoggerFactory.getLogger(VipMonitor.class);
 
     private final ZooKeeperConnection connection;
     private final ControllerPaths controllerPaths;
