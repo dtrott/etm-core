@@ -18,7 +18,6 @@ package com.edmunds.etm.agent.impl;
 import com.edmunds.etm.agent.api.AgentConfig;
 import com.edmunds.etm.agent.api.HealthCheck;
 import com.edmunds.etm.agent.api.WebServerController;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 
 /**
  * Controller for an external web server process.
@@ -59,7 +60,7 @@ public class ProcessController implements WebServerController {
         }
 
         try {
-            configData = FileUtils.readFileToByteArray(configFile);
+            configData = Files.readAllBytes(configFile.toPath());
         } catch (IOException e) {
             String message = String
                     .format("Could not read configuration file at path %s", agentConfig.getFilePath());
@@ -72,7 +73,7 @@ public class ProcessController implements WebServerController {
     public void writeRuleSetData(byte[] ruleSetData) {
         File configFile = new File(agentConfig.getFilePath());
         try {
-            FileUtils.writeByteArrayToFile(configFile, ruleSetData);
+            Files.write(configFile.toPath(), ruleSetData, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
         } catch (IOException e) {
             String message = String
                     .format("Could not write configuration file at path %s", agentConfig.getFilePath());
