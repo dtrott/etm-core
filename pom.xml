@@ -18,7 +18,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <rest-common-version>[1.10.0,1.11.0)</rest-common-version>
-        <spring.version>2.5.6</spring.version>
+        <spring.version>4.3.10.RELEASE</spring.version>
         <jetty.version>9.4.6.v20170531</jetty.version>
         <jetty.connectorPort>8080</jetty.connectorPort>
         <jetty.stopPort>5709</jetty.stopPort>
@@ -118,6 +118,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -186,7 +192,8 @@
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
-                <version>6.9.10</version>
+                <version>6.11</version>
+                <scope>test</scope>
                 <exclusions>
                     <exclusion>
                         <groupId>junit</groupId>
@@ -198,7 +205,8 @@
             <dependency>
                 <groupId>org.easymock</groupId>
                 <artifactId>easymock</artifactId>
-                <version>3.1</version>
+                <version>3.4</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
