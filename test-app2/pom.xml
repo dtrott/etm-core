@@ -12,29 +12,20 @@
     <packaging>war</packaging>
     <name>Test web application 2 for etm client library</name>
 
-    <properties>
-        <org-mortbay-jetty-version>7.1.6.v20100715</org-mortbay-jetty-version>
-    </properties>
-
     <build>
         <finalName>test-app2</finalName>
         <plugins>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>${org-mortbay-jetty-version}</version>
+                 <groupId>org.eclipse.jetty</groupId>
+                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webAppConfig>
                         <contextPath>/test-app2</contextPath>
                     </webAppConfig>
-                    <stopPort>6622</stopPort>
-                    <stopKey>foo</stopKey>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>9090</port>
-                        </connector>
-                    </connectors>
+                    <stopPort>7077</stopPort>
+                    <httpConnector>
+                        <port>7070</port>
+                    </httpConnector>
                 </configuration>
             </plugin>
         </plugins>
