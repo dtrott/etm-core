@@ -83,12 +83,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.edmunds.oss.common</groupId>
-                <artifactId>edmunds-configuration</artifactId>
-                <version>[1.0.0,1.1.0)</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.edmunds.oss.etm</groupId>
                 <artifactId>etm-common</artifactId>
                 <version>[1.0.0,1.1.0)</version>

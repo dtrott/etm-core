@@ -26,10 +26,6 @@
     <dependencies>
 
         <!-- Edmunds Dependencies -->
-        <dependency>
-            <groupId>com.edmunds.oss.common</groupId>
-            <artifactId>edmunds-configuration</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.edmunds.oss.etm</groupId>
