@@ -63,20 +63,20 @@ public class GetCommand implements Command {
     @Override
     public void execute(String[] args) {
 
-        if(args == null || args.length != 1) {
+        if (args == null || args.length != 1) {
             outputWriter.printHelp(this);
             return;
         }
 
         // Token name
         String tokenName = args[0].trim();
-        if(StringUtils.isBlank(tokenName)) {
+        if (StringUtils.isBlank(tokenName)) {
             outputWriter.printHelp(this);
             return;
         }
 
         UrlToken token = urlTokenRepository.getToken(tokenName);
-        if(token == null) {
+        if (token == null) {
             outputWriter.println(String.format("Token not found: %s", tokenName));
             return;
         }
@@ -85,7 +85,7 @@ public class GetCommand implements Command {
         outputWriter.println("Type: " + token.getType());
         outputWriter.println("Values:");
 
-        for(String value : token.getValues()) {
+        for (String value : token.getValues()) {
             outputWriter.println(value);
         }
     }

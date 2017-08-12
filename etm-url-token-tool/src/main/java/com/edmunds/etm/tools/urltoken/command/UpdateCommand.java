@@ -20,15 +20,16 @@ import com.edmunds.etm.common.impl.TokenNotFoundException;
 import com.edmunds.etm.common.impl.UrlTokenRepository;
 import com.edmunds.etm.tools.urltoken.util.OptionUtils;
 import com.edmunds.etm.tools.urltoken.util.OutputWriter;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import joptsimple.OptionException;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Updates an existing URL token.
@@ -50,7 +51,7 @@ public class UpdateCommand implements Command {
         this.outputWriter = outputWriter;
         this.parser = new OptionParser();
         this.valuesFileOption = parser.accepts("f", "values file path (one value per line)")
-            .withRequiredArg().ofType(File.class);
+                .withRequiredArg().ofType(File.class);
         this.replaceOption = parser.accepts("r", "replace values instead of appending");
     }
 
@@ -80,14 +81,14 @@ public class UpdateCommand implements Command {
         OptionSet options;
         try {
             options = parser.parse(args);
-        } catch(OptionException e) {
+        } catch (OptionException e) {
             outputWriter.println(e.getMessage());
             return;
         }
 
         // Token name
         String tokenName = OptionUtils.firstNonOptionArgument(options);
-        if(tokenName == null) {
+        if (tokenName == null) {
             outputWriter.printHelp(this);
             return;
         }
@@ -96,22 +97,22 @@ public class UpdateCommand implements Command {
         List<String> values;
         try {
             values = OptionUtils.parseValues(options, valuesFileOption);
-        } catch(IOException e) {
+        } catch (IOException e) {
             outputWriter.println(e.getMessage());
             return;
         }
 
         UrlToken token = urlTokenRepository.getToken(tokenName);
-        if(token == null) {
+        if (token == null) {
             outputWriter.println(String.format("Token does not exist: %s", tokenName));
             return;
         }
 
-        if(options.has(replaceOption)) {
+        if (options.has(replaceOption)) {
             token.setValues(values);
         } else {
-            for(String value : values) {
-                if(!token.getValues().contains(value)) {
+            for (String value : values) {
+                if (!token.getValues().contains(value)) {
                     token.addValue(value);
                 }
             }
@@ -119,7 +120,7 @@ public class UpdateCommand implements Command {
 
         try {
             urlTokenRepository.updateToken(token);
-        } catch(TokenNotFoundException e) {
+        } catch (TokenNotFoundException e) {
             outputWriter.println(String.format("Token not found: %s", tokenName));
         }
     }

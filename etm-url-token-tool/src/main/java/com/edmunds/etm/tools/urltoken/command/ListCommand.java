@@ -17,10 +17,11 @@ package com.edmunds.etm.tools.urltoken.command;
 
 import com.edmunds.etm.common.impl.UrlTokenRepository;
 import com.edmunds.etm.tools.urltoken.util.OutputWriter;
-import java.util.List;
 import joptsimple.OptionParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Lists all defined URL tokens.
@@ -64,7 +65,7 @@ public class ListCommand implements Command {
 
         List<String> tokenNames = urlTokenRepository.getTokenNames();
 
-        for(String name : tokenNames) {
+        for (String name : tokenNames) {
             outputWriter.println(name);
         }
     }

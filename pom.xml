@@ -66,13 +66,15 @@
     <dependencyManagement>
         <dependencies>
 
-            <!-- Edmunds Dependencies -->
+            <!-- Project Dependencies -->
 
             <dependency>
                 <groupId>com.edmunds.oss.etm</groupId>
                 <artifactId>etm-identity-loadbalancer</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <!-- Edmunds Dependencies -->
 
             <dependency>
                 <groupId>com.edmunds.oss.etm</groupId>

@@ -20,8 +20,10 @@ import org.testng.annotations.Test;
 
 import java.util.Collections;
 import java.util.List;
-import static com.edmunds.etm.management.api.ManagementLoadBalancerState.*;
 
+import static com.edmunds.etm.management.api.ManagementLoadBalancerState.ACTIVE;
+import static com.edmunds.etm.management.api.ManagementLoadBalancerState.CREATE_REQUEST;
+import static com.edmunds.etm.management.api.ManagementLoadBalancerState.DELETE_REQUEST;
 import static org.testng.Assert.assertEquals;
 
 @Test

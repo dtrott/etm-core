@@ -19,13 +19,16 @@ import com.edmunds.etm.common.api.FixedUrlToken;
 import com.edmunds.etm.management.api.MavenModule;
 import com.edmunds.etm.rules.impl.UrlTokenDictionary;
 import com.google.common.collect.Lists;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
 
 /**
  * Tests a UrlRuleSet
@@ -48,10 +51,10 @@ public class UrlRuleSetTest {
         dictionary.add(new FixedUrlToken("state", "california", "nevada"));
         this.tokenResolver = dictionary;
         urlRuleSet = new UrlRuleSet(buildRules(testApp1,
-            "/",
-            "/[make]/**",
-            "/app/**",
-            "/app/delta/index.html"
+                "/",
+                "/[make]/**",
+                "/app/**",
+                "/app/delta/index.html"
         ));
     }
 
@@ -61,14 +64,14 @@ public class UrlRuleSetTest {
     @Test
     public void mergeRuleTestSimple() {
         UrlRuleSet newRuleSet = mergeRules(
-            "/app/a*");
+                "/app/a*");
 
         assertRuleorder(newRuleSet,
-            "/",
-            "/[make]/**",
-            "/app/a*",
-            "/app/**",
-            "/app/delta/index.html");
+                "/",
+                "/[make]/**",
+                "/app/a*",
+                "/app/**",
+                "/app/delta/index.html");
     }
 
     /**
@@ -77,17 +80,17 @@ public class UrlRuleSetTest {
     @Test
     public void mergeRuleTestInsert() {
         UrlRuleSet newRuleSet = mergeRules(
-            "/app/a*",
-            "/app/delta/*"
+                "/app/a*",
+                "/app/delta/*"
         );
 
         assertRuleorder(newRuleSet,
-            "/",
-            "/[make]/**",
-            "/app/a*",
-            "/app/delta/index.html",
-            "/app/delta/*",
-            "/app/**");
+                "/",
+                "/[make]/**",
+                "/app/a*",
+                "/app/delta/index.html",
+                "/app/delta/*",
+                "/app/**");
     }
 
     /**
@@ -96,15 +99,15 @@ public class UrlRuleSetTest {
     @Test
     public void mergeRuleTestToken() {
         UrlRuleSet newRuleSet = mergeRules(
-            "/ford/index.html"
+                "/ford/index.html"
         );
 
         assertRuleorder(newRuleSet,
-            "/",
-            "/app/**",
-            "/app/delta/index.html",
-            "/ford/index.html",
-            "/[make]/**");
+                "/",
+                "/app/**",
+                "/app/delta/index.html",
+                "/ford/index.html",
+                "/[make]/**");
     }
 
     /**
@@ -113,7 +116,7 @@ public class UrlRuleSetTest {
     @Test
     public void mergeRuleTestIdentical() {
         UrlRuleSet newRuleSet = mergeRules(
-            "/app/**"
+                "/app/**"
         );
 
         assertNull(newRuleSet);
@@ -125,7 +128,7 @@ public class UrlRuleSetTest {
     @Test
     public void mergeRuleTestOverlap() {
         UrlRuleSet newRuleSet = mergeRules(
-            "/[model]/**"
+                "/[model]/**"
         );
 
         assertNull(newRuleSet);
@@ -138,61 +141,61 @@ public class UrlRuleSetTest {
         UrlRuleSet ruleSet2 = ruleSet1.mergeRules(buildRules(testApp2, "/app/b*"));
 
         assertRuleorder(ruleSet1,
-            "/",
-            "/[make]/**",
-            "/app/a*",
-            "/app/**",
-            "/app/delta/index.html");
+                "/",
+                "/[make]/**",
+                "/app/a*",
+                "/app/**",
+                "/app/delta/index.html");
 
         assertRuleorder(ruleSet2,
-            "/",
-            "/[make]/**",
-            "/app/a*",
-            "/app/b*",
-            "/app/**",
-            "/app/delta/index.html");
+                "/",
+                "/[make]/**",
+                "/app/a*",
+                "/app/b*",
+                "/app/**",
+                "/app/delta/index.html");
     }
 
     @Test
     public void deleteRulesTest() {
         UrlRuleSet newRuleSet = mergeRules(
-            "/app/a*",
-            "/app/delta/*"
+                "/app/a*",
+                "/app/delta/*"
         );
 
         assertRuleorder(newRuleSet,
-            "/",
-            "/[make]/**",
-            "/app/a*",
-            "/app/delta/index.html",
-            "/app/delta/*",
-            "/app/**");
+                "/",
+                "/[make]/**",
+                "/app/a*",
+                "/app/delta/index.html",
+                "/app/delta/*",
+                "/app/**");
 
         newRuleSet.deleteRules(testApp2);
 
         assertRuleorder(newRuleSet,
-            "/",
-            "/[make]/**",
-            "/app/**",
-            "/app/delta/index.html");
+                "/",
+                "/[make]/**",
+                "/app/**",
+                "/app/delta/index.html");
 
         UrlRuleSet reAddRuleSet = newRuleSet.mergeRules(buildRules(testApp2,
-            "/app/a*",
-            "/app/delta/*"));
+                "/app/a*",
+                "/app/delta/*"));
 
         assertRuleorder(reAddRuleSet,
-            "/",
-            "/[make]/**",
-            "/app/a*",
-            "/app/delta/index.html",
-            "/app/delta/*",
-            "/app/**");
+                "/",
+                "/[make]/**",
+                "/app/a*",
+                "/app/delta/index.html",
+                "/app/delta/*",
+                "/app/**");
     }
 
     private List<UrlRule> buildRules(MavenModule mavenModule, String... rules) {
         List<UrlRule> rulesList = Lists.newArrayList();
 
-        for(String rule : rules) {
+        for (String rule : rules) {
             rulesList.add(new UrlRule(tokenResolver, mavenModule, "localhost:80", rule));
         }
 
@@ -211,7 +214,7 @@ public class UrlRuleSetTest {
         Iterator<UrlRule> iterator = orderedRules.iterator();
 
         int index = 0;
-        for(String rule : rules) {
+        for (String rule : rules) {
             assertEquals(iterator.next().getRule(), rule, "Index: " + index++);
         }
     }

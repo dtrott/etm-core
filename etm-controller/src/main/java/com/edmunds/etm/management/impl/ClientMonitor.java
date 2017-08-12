@@ -33,6 +33,13 @@ import com.edmunds.zookeeper.treewatcher.ZooKeeperTreeWatcher;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,12 +49,6 @@ import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import static com.edmunds.etm.management.api.ManagementLoadBalancerState.UNKNOWN;
 import static com.edmunds.etm.management.api.ManagementVipType.MAVEN_ONLY;
@@ -83,12 +84,12 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
         this.clientMonitorCallbacks = Sets.newHashSet();
 
         this.watcher = new ZooKeeperTreeWatcher(
-            connection, 0, clientPaths.getConnected(), new ZooKeeperTreeConsistentCallback() {
-                @Override
-                public void treeConsistent(ZooKeeperTreeNode oldRoot, ZooKeeperTreeNode newRoot) {
-                    clientTreeChanged(newRoot);
-                }
-            });
+                connection, 0, clientPaths.getConnected(), new ZooKeeperTreeConsistentCallback() {
+            @Override
+            public void treeConsistent(ZooKeeperTreeNode oldRoot, ZooKeeperTreeNode newRoot) {
+                clientTreeChanged(newRoot);
+            }
+        });
 
         this.objectSerializer = objectSerializer;
         this.clientIdlePeriod = CLIENT_IDLE_PERIOD_DEFAULT;
@@ -137,11 +138,11 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
     @Override
     public void onConnectionStateChanged(ZooKeeperConnectionState state) {
 
-        if(logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             logger.debug(String.format("Connection state changed: %s", state));
         }
 
-        if(state == INITIALIZED) {
+        if (state == INITIALIZED) {
             watcher.initialize();
         }
     }
@@ -150,7 +151,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
     public void destroy() throws Exception {
 
         // Shut down the callback scheduler
-        if(callbackScheduler != null) {
+        if (callbackScheduler != null) {
             callbackScheduler.shutdown();
             callbackScheduler.awaitTermination(SCHEDULER_SHUTDOWN_TIMEOUT, TimeUnit.MILLISECONDS);
         }
@@ -176,7 +177,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
 
     protected void clientTreeChanged(ZooKeeperTreeNode hosts) {
 
-        if(hosts == null) {
+        if (hosts == null) {
             return;
         }
 
@@ -186,7 +187,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
     }
 
     protected void performCallbacks() {
-        for(ClientMonitorCallback callback : clientMonitorCallbacks) {
+        for (ClientMonitorCallback callback : clientMonitorCallbacks) {
             callback.onClientVipsUpdated(this);
         }
     }
@@ -194,7 +195,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
     private ManagementVips buildVips(ZooKeeperTreeNode connectedNode) {
         final Map<MavenModule, VipBuilder> vipBuilders = Maps.newHashMap();
 
-        for(ZooKeeperTreeNode node : connectedNode.getChildren().values()) {
+        for (ZooKeeperTreeNode node : connectedNode.getChildren().values()) {
             processConnectedNode(node, vipBuilders);
         }
 
@@ -206,7 +207,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
         ClientConfigDto configDto;
         try {
             configDto = objectSerializer.readValue(node.getData(), ClientConfigDto.class);
-        } catch(IOException e) {
+        } catch (IOException e) {
             logger.error(String.format("Unable to read client node: %s", node.getPath()), e);
             return;
         }
@@ -215,8 +216,8 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
         final MavenModule mavenModule = MavenModule.readDto(configDto.getMavenModule());
 
         final String ipAddress = memberAddress.getHost();
-        if(StringUtils.isEmpty(ipAddress) || ipAddress.startsWith("127.") ||
-            "0.0.0.0".equals(ipAddress) || "255.255.255.255".equals(ipAddress)) {
+        if (StringUtils.isEmpty(ipAddress) || ipAddress.startsWith("127.") ||
+                "0.0.0.0".equals(ipAddress) || "255.255.255.255".equals(ipAddress)) {
             logger.error("Ignoring Client - Invalid IP (" + ipAddress + ") : " + mavenModule);
             return;
         }
@@ -231,7 +232,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
 
         VipBuilder vipBuilder = vipBuilders.get(mavenModule);
 
-        if(vipBuilder == null) {
+        if (vipBuilder == null) {
             vipBuilder = new VipBuilder(mavenModule, context, rules, httpMonitor);
             vipBuilders.put(mavenModule, vipBuilder);
         }
@@ -242,7 +243,7 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
     private ManagementVips buildVips(Map<MavenModule, VipBuilder> vipBuilders) {
         final List<ManagementVip> vips = Lists.newArrayList();
 
-        for(VipBuilder vipBuilder : vipBuilders.values()) {
+        for (VipBuilder vipBuilder : vipBuilders.values()) {
             vips.add(vipBuilder.build());
         }
 
@@ -265,13 +266,13 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
         }
 
         public void addPoolMember(ManagementPoolMember poolMember) {
-            if(!members.add(poolMember)) {
+            if (!members.add(poolMember)) {
                 logger.info("Duplicate pool member detected: " + poolMember.getHostAddress());
             }
         }
 
         public ManagementVip build() {
-            if(logger.isDebugEnabled()) {
+            if (logger.isDebugEnabled()) {
                 logger.debug("Building Vip: " + mavenModule);
             }
             return new ManagementVip(UNKNOWN, mavenModule, null, members, context, rules, httpMonitor);
@@ -294,16 +295,16 @@ public class ClientMonitor implements ZooKeeperConnectionListener, InitializingB
         public void run() {
 
             ManagementVips vips = getClientVips();
-            if(vips == null) {
+            if (vips == null) {
                 return;
             }
 
-            if(previousVips == null || !previousVips.equals(vips)) {
+            if (previousVips == null || !previousVips.equals(vips)) {
                 logger.debug("Client vips updated");
                 previousVips = vips;
                 resetIdleTimeout();
                 callbackPending = true;
-            } else if(isIdlePeriodElapsed() && callbackPending) {
+            } else if (isIdlePeriodElapsed() && callbackPending) {
                 // Execute the callbacks
                 performCallbacks();
                 resetIdleTimeout();

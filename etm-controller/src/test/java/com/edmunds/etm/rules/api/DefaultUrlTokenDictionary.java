@@ -25,20 +25,18 @@ public class DefaultUrlTokenDictionary {
 
         UrlTokenDictionary dictionary = new UrlTokenDictionary();
         dictionary.add(new FixedUrlToken("make",
-            "auburn",
-            "duesenberg",
-            "ford",
-            "kissel",
-            "locomobile",
-            "packard",
-            "studebaker",
-            "stutz"));
+                "auburn",
+                "duesenberg",
+                "ford",
+                "kissel",
+                "locomobile",
+                "packard",
+                "studebaker",
+                "stutz"));
         dictionary.add(new RegexUrlToken("model", "[^/]*"));
         dictionary.add(new RegexUrlToken("year", "(19|20)\\d{2}"));
         dictionary.add(new RegexUrlToken("state", "(ca|ny|other)"));
         dictionary.add(new RegexUrlToken("zipcode", "\\d{5}"));
         return dictionary;
     }
-
-
 }

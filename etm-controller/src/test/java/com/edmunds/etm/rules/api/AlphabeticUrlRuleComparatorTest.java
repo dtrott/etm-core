@@ -17,7 +17,6 @@ package com.edmunds.etm.rules.api;
 
 import com.edmunds.etm.management.api.MavenModule;
 import com.edmunds.etm.rules.impl.UrlTokenDictionary;
-
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

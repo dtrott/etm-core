@@ -19,14 +19,22 @@ import com.edmunds.etm.common.api.FixedUrlToken;
 import com.edmunds.etm.common.api.RegexUrlToken;
 import com.edmunds.etm.management.api.MavenModule;
 import com.edmunds.etm.rules.impl.UrlTokenDictionary;
-import java.util.List;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static com.edmunds.etm.rules.api.RuleComparison.*;
+import java.util.List;
+
+import static com.edmunds.etm.rules.api.RuleComparison.DISTINCT;
+import static com.edmunds.etm.rules.api.RuleComparison.HIGH_PRIORITY;
+import static com.edmunds.etm.rules.api.RuleComparison.IDENTICAL;
+import static com.edmunds.etm.rules.api.RuleComparison.LOW_PRIORITY;
+import static com.edmunds.etm.rules.api.RuleComparison.OVERLAP;
 import static com.edmunds.etm.rules.api.SegmentType.COMPLETE;
 import static com.edmunds.etm.rules.api.SegmentType.EMPTY;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertSame;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Url Rule Test.
@@ -66,7 +74,7 @@ public class UrlRuleTest {
     public void constructorTestInvalid() {
         try {
             new UrlRule(tokenResolver, mavenModule, "localhost:80", "");
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             assertEquals(e.getMessage(), "rule must start with a /");
         }
     }

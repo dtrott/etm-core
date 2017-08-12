@@ -17,14 +17,15 @@ package com.edmunds.etm.tools.urltoken.util;
 
 import com.edmunds.etm.common.api.UrlTokenType;
 import com.google.common.collect.Lists;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Command line option parsing utilities.
@@ -43,12 +44,12 @@ public final class OptionUtils {
 
     public static String firstNonOptionArgument(OptionSet options) {
         List<String> arguments = options.nonOptionArguments();
-        if(arguments.isEmpty()) {
+        if (arguments.isEmpty()) {
             return null;
         }
 
         String tokenName = arguments.get(0);
-        if(StringUtils.isBlank(tokenName)) {
+        if (StringUtils.isBlank(tokenName)) {
             return null;
         }
 
@@ -60,9 +61,9 @@ public final class OptionUtils {
         UrlTokenType tokenType;
         // Token type
         String tokenTypeArg = options.valueOf(typeSpec);
-        if(TOKEN_TYPE_FIXED.equals(tokenTypeArg)) {
+        if (TOKEN_TYPE_FIXED.equals(tokenTypeArg)) {
             tokenType = UrlTokenType.FIXED;
-        } else if(TOKEN_TYPE_REGEX.equals(tokenTypeArg)) {
+        } else if (TOKEN_TYPE_REGEX.equals(tokenTypeArg)) {
             tokenType = UrlTokenType.REGEX;
         } else {
             tokenType = defaultType;
@@ -76,7 +77,7 @@ public final class OptionUtils {
 
         List<String> values;
         File file = options.valueOf(fileSpec);
-        if(file != null) {
+        if (file != null) {
             values = Lists.newArrayList(FileUtils.readLines(file));
         } else {
             values = Lists.newArrayList();

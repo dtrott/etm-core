@@ -16,6 +16,7 @@
 package com.edmunds.etm.runtime.api;
 
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
@@ -64,5 +65,4 @@ public class ApplicationVersionTest {
         assertTrue(v2.compareTo(v3) < 0);
         assertTrue(v3.compareTo(v4) < 0);
     }
-
 }

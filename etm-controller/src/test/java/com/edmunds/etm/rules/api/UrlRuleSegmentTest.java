@@ -533,5 +533,4 @@ public class UrlRuleSegmentTest {
 
         assertSame(me.compareTo(other), DISTINCT);
     }
-
 }
