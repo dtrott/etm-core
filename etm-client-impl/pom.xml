@@ -15,10 +15,6 @@
     <dependencies>
 
         <!-- Edmunds Dependencies -->
-        <dependency>
-            <groupId>com.edmunds.oss.etm</groupId>
-            <artifactId>etm-config</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.edmunds.oss.etm</groupId>
