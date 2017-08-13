@@ -10,7 +10,7 @@
 
     <artifactId>test-app</artifactId>
     <packaging>war</packaging>
-    <name>Test web application for etm client library</name>
+    <name>ETM - Test web application for client library</name>
 
     <build>
         <finalName>test-app</finalName>

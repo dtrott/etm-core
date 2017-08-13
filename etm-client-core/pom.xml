@@ -10,7 +10,7 @@
 
     <artifactId>etm-client-core</artifactId>
     <packaging>jar</packaging>
-    <name>ETM Client Core</name>
+    <name>ETM - Client Core</name>
 
     <dependencies>
 
