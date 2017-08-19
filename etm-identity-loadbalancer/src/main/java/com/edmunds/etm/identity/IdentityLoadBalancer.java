@@ -42,7 +42,6 @@ import java.util.SortedSet;
  *
  * @author David Trott
  */
-@Scope("prototype")
 @Component
 public class IdentityLoadBalancer implements LoadBalancerConnection {
 
