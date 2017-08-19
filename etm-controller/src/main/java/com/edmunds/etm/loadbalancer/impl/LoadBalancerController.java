@@ -303,7 +303,8 @@ public class LoadBalancerController {
     private ManagementVip deleteVirtualServer(ManagementVip vip) {
         String serverName = createServerName(vip.getMavenModule());
         try {
-            deleteVirtualServer(new VirtualServer(serverName, vip.getHostAddress()));
+            final SortedSet<PoolMember> poolMembers = vipToPoolMembers(vip);
+            deleteVirtualServer(new VirtualServer(serverName, vip.getHostAddress(), poolMembers));
         } catch (RemoteException e) {
             logger.error(String.format("Failed to delete virtual server: %s", serverName), e);
             return new ManagementVip(ACTIVE, vip.getMavenModule(), vip.getHostAddress(),
