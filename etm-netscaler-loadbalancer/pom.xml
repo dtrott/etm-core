@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.edmunds.oss.etm</groupId>
+        <artifactId>etm-core</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>etm-netscaler-loadbalancer</artifactId>
+    <name>ETM - NetScaler Load Balancer</name>
+
+    <dependencies>
+        <!-- Edmunds Dependencies -->
+
+        <dependency>
+            <groupId>com.edmunds.oss.etm</groupId>
+            <artifactId>etm-loadbalancer-api</artifactId>
+        </dependency>
+
+        <!-- Nitro API -->
+
+        <dependency>
+            <groupId>com.citrix.netscaler.nitro</groupId>
+            <artifactId>nitro</artifactId>
+            <version>10.1</version>
+        </dependency>
+
+        <!-- Other Dependencies -->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.click</groupId>
+            <artifactId>click</artifactId>
+        </dependency>
+
+        <!-- Logging Dependencies -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <!-- Test Dependencies -->
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

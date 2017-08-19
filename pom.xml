@@ -76,6 +76,12 @@
 
             <dependency>
                 <groupId>com.edmunds.oss.etm</groupId>
+                <artifactId>etm-netscaler-loadbalancer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.edmunds.oss.etm</groupId>
                 <artifactId>etm-client-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -229,6 +235,7 @@
 
     <modules>
         <module>etm-identity-loadbalancer</module>
+        <module>etm-netscaler-loadbalancer</module>
         <module>etm-controller</module>
         <module>etm-url-token-tool</module>
         <module>etm-agent</module>

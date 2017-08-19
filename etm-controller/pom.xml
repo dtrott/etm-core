@@ -143,5 +143,14 @@
                 </dependency>
             </dependencies>
         </profile>
+        <profile>
+            <id>netscaler</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.edmunds.oss.etm</groupId>
+                    <artifactId>etm-netscaler-loadbalancer</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
 </project>
