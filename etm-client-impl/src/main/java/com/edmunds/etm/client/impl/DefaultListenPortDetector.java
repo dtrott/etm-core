@@ -19,8 +19,23 @@ package com.edmunds.etm.client.impl;
  * Default detector that returns port 8080 which is the normal port jetty and tomcat run on.
  */
 public class DefaultListenPortDetector implements ListenPortDetector {
+    private static final int DEFAULT_PORT_NUMBER = 8080;
+
     @Override
     public int getListenPort() {
-        return 8080;
+        try {
+            final String propListenPort = System.getProperty("listenPort");
+
+            if (propListenPort != null && !propListenPort.isEmpty()) {
+                final int port = Integer.parseInt(propListenPort);
+
+                if (port > 0) {
+                    return port;
+                }
+            }
+        } catch (NumberFormatException e) {
+            return DEFAULT_PORT_NUMBER;
+        }
+        return DEFAULT_PORT_NUMBER;
     }
 }

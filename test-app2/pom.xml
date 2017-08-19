@@ -19,6 +19,13 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>listenPort</name>
+                            <value>7070</value>
+                        </systemProperty>
+                    </systemProperties>
+
                     <webAppConfig>
                         <contextPath>/test-app2</contextPath>
                     </webAppConfig>

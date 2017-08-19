@@ -27,6 +27,13 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <configuration>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>listenPort</name>
+                            <value>6060</value>
+                        </systemProperty>
+                    </systemProperties>
+
                     <webAppConfig>
                         <contextPath>/test-app</contextPath>
                     </webAppConfig>
