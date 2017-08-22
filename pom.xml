@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.edmunds.oss.etm</groupId>
+    <groupId>com.davidtrott.oss.etm</groupId>
     <artifactId>etm-core</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
@@ -69,25 +69,25 @@
             <!-- Project Dependencies -->
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-identity-loadbalancer</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-netscaler-loadbalancer</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-client-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-client-impl</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -95,13 +95,13 @@
             <!-- Edmunds Dependencies -->
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-loadbalancer-api</artifactId>
                 <version>[1.0.0,1.1.0)</version>
             </dependency>
 
             <dependency>
-                <groupId>com.edmunds.oss.etm</groupId>
+                <groupId>com.davidtrott.oss.etm</groupId>
                 <artifactId>etm-common</artifactId>
                 <version>[1.0.0,1.1.0)</version>
             </dependency>

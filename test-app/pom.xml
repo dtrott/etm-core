@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.edmunds.oss.etm</groupId>
+        <groupId>com.davidtrott.oss.etm</groupId>
         <artifactId>etm-core</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -49,7 +49,7 @@
     <dependencies>
         <!-- Project Dependencies -->
         <dependency>
-            <groupId>com.edmunds.oss.etm</groupId>
+            <groupId>com.davidtrott.oss.etm</groupId>
             <artifactId>etm-client-impl</artifactId>
         </dependency>
 
