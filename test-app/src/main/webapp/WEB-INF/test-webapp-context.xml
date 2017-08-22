@@ -7,6 +7,6 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-    <import resource="classpath:configuration-common-spring.xml"/>
+    <import resource="classpath:etm-identity-spring.xml"/>
 
 </beans>
