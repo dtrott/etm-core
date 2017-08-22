@@ -29,54 +29,9 @@ public final class Constants {
     }
 
     /**
-     * Slash.
-     */
-    public static final String SLASH = "/";
-
-    /**
      * Asterisk.
      */
     public static final String ASTERISK = "*";
-
-    /**
-     * Double asterisk.
-     */
-    public static final String DOUBLE_ASTERISK = "**";
-
-    /**
-     * Year.
-     */
-    public static final String YEAR_WILDCARD = "[year]";
-
-    /**
-     * Zip.
-     */
-    public static final String ZIPCODE_WILDCARD = "[zipcode]";
-
-    /**
-     * Make.
-     */
-    public static final String MAKE_WILDCARD = "[make]";
-
-    /**
-     * Make.
-     */
-    public static final String MODEL_WILDCARD = "[model]";
-
-    /**
-     * Region.
-     */
-    public static final String STATE_WILDCARD = "[state]";
-
-    /**
-     * Underscore.
-     */
-    public static final String UNDERSCORE = "_";
-
-    /**
-     * XML File extension.
-     */
-    public static final String XML_FILE_EXT = ".xml";
 
     /**
      * Regular expression for any symbols sequence.
@@ -87,14 +42,4 @@ public final class Constants {
      * Regular expression for symbols sequence without slash.
      */
     public static final String ANY_SYMBOLS_EXCEPT_SLASH_REGEXP = "[^/]*";
-
-    /**
-     * Regular expression for year.
-     */
-    public static final String YEAR_REGEXP = "(19|20)\\d{2}";
-
-    /**
-     * Regular expression for zip-code.
-     */
-    public static final String ZIPCODE_REGEXP = "\\d{5}";
 }

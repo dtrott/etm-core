@@ -45,7 +45,7 @@ public enum SegmentType {
     WILDCARD,
 
     /**
-     * The segment is a special token such as: [make] [model], ...
+     * The segment is a special token such as: [color] [model], ...
      */
     TOKEN;
 }

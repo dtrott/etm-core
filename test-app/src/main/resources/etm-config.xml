@@ -6,7 +6,7 @@
     </application>
     <urlRules>
         <urlRule>/test-app/**</urlRule>
-        <urlRule>/[make]/[model]/[year]/**</urlRule>
+        <urlRule>/[color]/[model]/[year]/**</urlRule>
     </urlRules>
     <httpMonitor>
         <url>/test-app/</url>
