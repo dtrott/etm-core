@@ -97,6 +97,12 @@ public class LoadBalancerController {
             return null;
         }
 
+        // Check that the load balancer is active
+        if (!connection.isActive()) {
+            logger.error("Load balancer not active before updating configuration");
+            return null;
+        }
+
         // Initialize internal state
         if (!initializeFromLoadBalancer()) {
             logger.error("Cannot initialize data from load balancer");

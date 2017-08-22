@@ -42,7 +42,7 @@ public class LoadBalancerControllerTest {
         expect(environmentConfiguration.getEnvironmentName()).andStubReturn("dev");
 
         expect(loadBalancerConnection.connect()).andReturn(Boolean.TRUE);
-        expect(loadBalancerConnection.isActive()).andReturn(Boolean.TRUE);
+        expect(loadBalancerConnection.isActive()).andStubReturn(Boolean.TRUE);
         expect(loadBalancerConnection.saveConfiguration()).andReturn(Boolean.TRUE);
 
         expect(loadBalancerConnection.getAllVirtualServers()).andReturn(virtualServers);
